@@ -47,7 +47,8 @@ I used a library called "react-dropzone" to manage the selections in the files w
 Having a button to activate the action feels antiquated and clunky. 
 
 In the component "displayComponent.js" I make 2 server operations. Download and delete files. 
-I don't use any libraries here. I was going to try to implement a prettier and more dynamic design using Tailwind CSS, but since I am running out on my 4 hours I decided to only use some simple bootstrap table CS
+I don't use any libraries here. I was going to try to implement a prettier and more dynamic design using Tailwind CSS. 
+But since I am running out on my 4 hours I decided to only use some simple bootstrap table CSS.
 
 
 
