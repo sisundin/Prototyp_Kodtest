@@ -47,7 +47,7 @@ function UploadBox(){
     }
 
 
-    //API connection
+    //API connection for upload
     const uploadFiles = () => {
         const imageData = files[0];
         const metadata = {...metaData}

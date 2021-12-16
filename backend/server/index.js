@@ -3,10 +3,7 @@ const express = require("express");
 const fileUpload = require('express-fileupload');
 const path = require('path');
 
-
-
 const PORT = process.env.PORT || 3001;
-
 
 const app = express();
 // enable files upload
@@ -95,11 +92,11 @@ app.post('/uploadFiles', async (req, res) => {
         });
     } else {
 
-        
-
+        //Parase metadata 
         let file = req.files.files;
         let metaData = req.body;
 
+        //Metadata for file upload to storage
         const metadata = {
           contentType: file.mimetype,
           public: true,
@@ -140,7 +137,9 @@ app.post('/uploadFiles', async (req, res) => {
         //console.log('Added document with ID: ', result.id);
 
         //send response
-        res.status(200).send({ message: 'added document with ID: '+ result.id});
+        res.status(200).send({ 
+          message: 'added document with ID: '+ result.id
+        });
 
       }
 } catch (err) {
@@ -149,8 +148,6 @@ app.post('/uploadFiles', async (req, res) => {
 }
 
 })
-
-
 
 
 app.get('*', (req, res) => {
