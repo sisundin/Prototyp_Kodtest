@@ -5,6 +5,7 @@ function UploadBox(){
     const [files, setFiles] = React.useState([]);
     const [metaData, setMetadata] = React.useState({});
 
+
     const { getRootProps, getInputProps } = useDropzone({
         maxFiles:1,
         accept: 'image/jpeg, .pdf, .xml',
@@ -19,11 +20,34 @@ function UploadBox(){
       },
     });
 
-    React.useEffect(() => {
-        console.log(files);
-    }, [files]);
+    //Styles
+    const text = {
+        "color": "black",
+        "lineHeight": "normal",
+        
+    };
+
+    const sitemake ={
+        "padding":"20px",
+        "position": "absolute",
+        "bottom": "10px",
+        "right": "10px",
+    }
+
+    const dropSpace = {
+        "borderRadius": "32px",
+        "padding": "32px 32px",
+        "minHeight": "100px",
+        "width": "300px",
+        "display": "inline-block",
+        "verticalAlign": "middle",
+        "borderColor": "rgb(32, 32, 32)",
+        "borderStyle":"solid",
+        "boxShadow": "rgba(0, 0, 0, 0.8) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 0px 8px 0px"
+    }
 
 
+    //API connection
     const uploadFiles = () => {
         const imageData = files[0];
         const metadata = {...metaData}
@@ -44,53 +68,9 @@ function UploadBox(){
         .catch((e)=>console.log(e));
     }
 
+    
 
-    const text = {
-        "color": "Black",
-    };
-
-    const sitemake ={
-        "padding":"20px",
-        "position": "absolute",
-        "bottom": "10px",
-        "right": "10px",
-    }
-
-    const dropSpace = {
-        "borderRadius": "32px",
-        "padding": "8px 32px",
-        "marginBottom":"10px",
-        "minHeight": "50px",
-        "width":"300px",
-        "borderColor": "rgb(32, 32, 32)",
-        "borderStyle":"solid",
-        "color":"white",
-        "boxShadow": "rgba(0, 0, 0, 0.8) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 0px 8px 0px"
-    }
-
-    const inputFeald = {
-        "borderRadius": "32px",
-        "padding": "8px 32px",
-        "marginBottom":"20px",
-        "minHeight": "60px",
-        "width":"300px",
-        "borderColor": "rgb(32, 32, 32)",
-        "borderStyle":"solid",
-        "color":"black",
-        "boxShadow": "rgba(0, 0, 0, 0.8) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 0px 8px 0px"
-    }
-
-    const uploadbutton = {
-        "borderRadius": "32px",
-        "padding": "8px 32px",
-        "minHeight": "60px",
-        "backgroundColor": "rgb(89, 48, 229)",
-        "borderColor": "rgb(32, 32, 32)",
-        "borderStyle":"solid",
-        "color":"white",
-        "boxShadow": "rgba(0, 0, 0, 0.8) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 0px 8px 0px"
-    }
-
+    //Render Components
     const Previews = () => files.map((file) => <div key={file.name}>
               <div>
                 <p style={text}>{file.name}</p>
@@ -99,29 +79,28 @@ function UploadBox(){
             </div>);
             
           
-    const uloader = () => <div style={inputFeald}>
+    const uloader = () => <div>
             <p>
                 Your Name: <input type="text" name="name" onChange={e => setMetadata({...metaData, name:e.target.value})}/>
             </p>
             <p>
                 Description: <input type="text" name="description" onChange={e => setMetadata({...metaData, description:e.target.value})} />
             </p>
-            {!metaData.name? "Add your name!": !metaData.description? "You need a discription!": <button onClick={() => uploadFiles()} style = {uploadbutton}>Upload</button>}
+            {<button disabled={!metaData.name? true: !metaData.description? true: false} onClick={() => uploadFiles()}>
+                {!metaData.name? "Add your name": !metaData.description? "You need a discription": "Upload"}
+                </button>}
         </div>;
 
 
     return (<div style={sitemake}>
-       
-            <div style = {dropSpace} {...getRootProps()}>
+            <div style = {dropSpace}>
+            <div  {...getRootProps()}>
             <input {...getInputProps()} />
-            {!files.length? <p style={text}>Drag and drop file to upload...</p> : Previews() }
+            {!files.length? <span style={text}>Drag and drop file to upload...</span> : Previews() }
             </div>
-
             {!files.length? null : uloader()}
-    
-      </div>
-  );
-
+            </div>
+            </div>);
 
 }
 

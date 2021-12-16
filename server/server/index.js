@@ -30,7 +30,6 @@ initializeApp({
 const db =  getFirestore();
 
 
-
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
   });
@@ -45,21 +44,27 @@ app.get("/status", (req, res) => {
 
 
 app.get("/removeFile", async (req, res) => {
+
+  try{
   const id = req.query.id;
   const filsestorageID = req.query.filsestorageID
-  
-
   await getStorage().bucket("gs://clear-aurora-333717.appspot.com/").file(filsestorageID).delete();
   const result = await db.collection('dataSaved').doc(id).delete();
+  
   res.send({
     data:result
   });
+  }catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+}
 });
 
 
 
 app.get("/getObjects", async (req, res) => {
   
+  try{
   const database =  await db.collection('dataSaved');
   const stapshot = await database.get();
   let response = [];
@@ -71,6 +76,10 @@ app.get("/getObjects", async (req, res) => {
     res.send({
       data:response
     });
+  }catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+}
 });
 
 
@@ -129,11 +138,7 @@ app.post('/uploadFiles', async (req, res) => {
 
        
         //send response
-        res.send({
-            status: true,
-            message: 'File is uploaded',
-            
-        });
+        res.send({status: true, message: 'File is uploaded'});
     }
 } catch (err) {
     console.log(err);
