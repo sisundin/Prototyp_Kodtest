@@ -7,11 +7,14 @@ import xml from "../assets/xml.png";
 function FilesShower(){
     const [files, setFiles] = React.useState([]);
     const [update, setupdate] = React.useState(0);
+    const [filnameSortDirection, changeFilnameSortDirection] = React.useState("up");
+    const [dateSortDirection, changeDateSortDirection] = React.useState("up");
     
 
     React.useEffect(() => {
             getdata();
     }, [update]);
+
 
     //Styles
     const sitemake ={
@@ -40,11 +43,29 @@ function FilesShower(){
     }
 
 
-    const sortFilesname = (direction="down") => {
+    const sortFilesname = () => {
+        const direction = filnameSortDirection;
+        debugger;
+        console.log(files);
         if (direction === "up"){
-            setFiles(files.sort((a, b) => (a.filename > b.filename) - (a.filename < b.filename) ));
+            setFiles([...files.sort((a, b) => {return b.filename.localeCompare(a.filename) })]);
+            changeFilnameSortDirection("down")
         }else if (direction === "down"){
-            setFiles(files.sort((a, b) => (a.filename < b.filename) - (a.filename > b.filename) ));
+            setFiles([...files.sort((a, b) => {return a.filename.localeCompare(b.filename)})]);
+            changeFilnameSortDirection("up")
+        }
+    }
+
+    const sortCreationdate = () => {
+        const direction = dateSortDirection;
+        debugger;
+        console.log(files);
+        if (direction === "up"){
+            setFiles([...files.sort((a, b) => {return b.date.localeCompare(a.date) })]);
+            changeDateSortDirection("down")
+        }else if (direction === "down"){
+            setFiles([...files.sort((a, b) => {return a.date.localeCompare(b.date)})]);
+            changeDateSortDirection("up")
         }
     }
 
@@ -54,10 +75,10 @@ function FilesShower(){
        <thead>
         <tr>
             <th scope="col">Type</th>
-            <th scope="col" onClick={() => { sortFilesname("down");}}>Filename</th>
+            <th scope="col" onClick={() => {  sortFilesname();}}>Filename {filnameSortDirection==="up"?"↑":"↓"}</th>
             <th scope="col">Description</th>
             <th scope="col">Uploaded by</th>
-            <th scope="col">Date</th>
+            <th scope="col" onClick={() => {  sortCreationdate();}}>Date {dateSortDirection==="up"?"↑":"↓"}</th>
         </tr>
         </thead>
         <tbody>{files.map(file => {

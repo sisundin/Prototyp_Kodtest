@@ -5,7 +5,8 @@ import FilesShower from './components/displayComponent';
 
 function App() {
   const text = {
-    "color": "Black",
+    "color": "black",
+    "textAlign": "center"
 };
 
 const headerHighligt = {

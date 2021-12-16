@@ -79,7 +79,8 @@ function UploadBox(){
             </div>);
             
           
-    const uloader = () => <div>
+    const uploader = () => {
+        return <div>
             <p>
                 Your Name: <input type="text" name="name" onChange={e => setMetadata({...metaData, name:e.target.value})}/>
             </p>
@@ -89,17 +90,17 @@ function UploadBox(){
             {<button disabled={!metaData.name? true: !metaData.description? true: false} onClick={() => uploadFiles()}>
                 {!metaData.name? "Add your name": !metaData.description? "You need a discription": "Upload"}
                 </button>}
-        </div>;
+        </div>;}
 
 
     return (<div style={sitemake}>
-            <div style = {dropSpace}>
-            <div  {...getRootProps()}>
-            <input {...getInputProps()} />
-            {!files.length? <span style={text}>Drag and drop file to upload...</span> : Previews() }
-            </div>
-            {!files.length? null : uloader()}
-            </div>
+                <div style = {dropSpace}>
+                    <div  {...getRootProps()}>
+                        <input {...getInputProps()} />
+                        {!files.length? <span style={text}>Drag and drop file to upload...</span> : Previews() }
+                    </div>
+                    {!files.length? null : uploader()}
+                </div>
             </div>);
 }
 

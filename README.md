@@ -5,11 +5,11 @@ I used React to create my frontend and node.js to create the backend. I stardet 
 
 **To get this app started you need 2 terminals. One for server and one for the frontend**
 
-**Step 1:** change directory ./server in one terminal and ./file-manager in the other
+**Step 1:** change directory "./backend" in one terminal and "./file-manager" in the other
 
-**Step2:** run npm install in booth terminals to get the dependancys needed to run
+**Step2:** run "npm install" in booth terminals to get the dependancys needed to run
 
-**Step3:** run npm start in booth terminals 
+**Step3:** run "npm start" in booth terminals 
 
 You are good to go! :) 
 
@@ -49,6 +49,8 @@ Having a button to activate the action feels antiquated and clunky.
 In the component "displayComponent.js" I make 2 server operations. Download and delete files. 
 I don't use any libraries here. I was going to try to implement a prettier and more dynamic design using Tailwind CSS. 
 But since I am running out on my 4 hours I decided to only use some simple bootstrap table CSS.
+
+I did solve one of the bonus tasks. You can sort on date and filename. 
 
 
 
