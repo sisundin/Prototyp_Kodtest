@@ -4,6 +4,7 @@ import { useDropzone } from "react-dropzone"
 function UploadBox(){
     const [files, setFiles] = React.useState([]);
     const [metaData, setMetadata] = React.useState({});
+    const [uploading, setUploading] = React.useState(false);
 
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -35,6 +36,7 @@ function UploadBox(){
     }
 
     const dropSpace = {
+        "backgroundColor":"white",
         "borderRadius": "32px",
         "padding": "32px 32px",
         "minHeight": "100px",
@@ -64,7 +66,7 @@ function UploadBox(){
 
         fetch("/uploadFiles", requestOptions)
         .then((res) => res.json())
-        .then((data) => {setFiles([]); setMetadata({}); })
+        .then((data) => {setFiles([]); setMetadata({}); setUploading(false)  })
         .catch((e)=>console.log(e));
     }
 
@@ -73,7 +75,7 @@ function UploadBox(){
     //Render Components
     const Previews = () => files.map((file) => <div key={file.name}>
               <div>
-                <p style={text}>{file.name}</p>
+                <p style={text}>Filename: {file.name}</p>
                 <img src={file.preview} style={{ width: "200px" }} alt="preview" />
               </div>
             </div>);
@@ -87,8 +89,8 @@ function UploadBox(){
             <p>
                 Description: <input type="text" name="description" onChange={e => setMetadata({...metaData, description:e.target.value})} />
             </p>
-            {<button disabled={!metaData.name? true: !metaData.description? true: false} onClick={() => uploadFiles()}>
-                {!metaData.name? "Add your name": !metaData.description? "You need a discription": "Upload"}
+            {<button disabled={!metaData.name? true: !metaData.description? true: uploading? true: false} onClick={() => {setUploading(true); uploadFiles();}}>
+                {!metaData.name? "Add your name": !metaData.description? "You need a discription":uploading? "Uploading...": "Upload"}
                 </button>}
         </div>;}
 
