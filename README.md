@@ -13,9 +13,9 @@ I used React to create my frontend and node.js to create the backend. I stardet 
 
 You are good to go! :) 
 
-The server file can be found at ./Prototyp_Kodtest/backend/server/index.js
+The server file can be found at: **./Prototyp_Kodtest/backend/server/index.js**
 
-Frontend files can be found by starting at ./Prototyp_Kodtest/file-manager/src/App.js
+Frontend files can be found by starting at: **./Prototyp_Kodtest/file-manager/src/App.js**
 
 
 
