@@ -1,4 +1,7 @@
 import React from "react";
+import jpg from "../assets/jpg.png";
+import pdf from "../assets/pdf.png";
+import xml from "../assets/xml.png";
 
 
 function FilesShower(){
@@ -33,26 +36,34 @@ function FilesShower(){
         .then((data) => {console.log(data.data); setupdate(update+1);});
     }
 
+    const loadIllustrativeImage= (type)=>{
+        
+        const image = type === "text/xml"? xml: type === "application/pdf"?pdf: type === "image/jpeg"? jpg: null;
+        return image?<img alt="Preview broken" height={"50px"} src={image} ></img>:<p>{type}</p>
+
+    }
+
     const showFiles = () => {
        return <table className="table">
        <thead>
         <tr>
-        <th scope="col">Type</th>
-        <th scope="col">Filename</th>
-        <th scope="col">Description</th>
-        <th scope="col">Uploaded by</th>
-        <th scope="col">Date</th>
+            <th scope="col">Type</th>
+            <th scope="col">Filename</th>
+            <th scope="col">Description</th>
+            <th scope="col">Uploaded by</th>
+            <th scope="col">Date</th>
         </tr>
         </thead>
         <tbody>{files.map(file => {
-                return <tr id={file.id}>
-                <td>{file.type}</td>
-                <td ><a href={file.link}>{file.filename}</a></td>
-                <td>{file.description}</td>
-                <td>{file.uploadername}</td>
-                <td>{file.date}</td>
-                <td onClick={()=>removefile(file.id, file.filsestorageID)}>X</td>
-                </tr>
+                return (
+                <tr id={file.id}>
+                    <td>{loadIllustrativeImage(file.type)}</td>
+                    <td ><a href={file.link}>{file.filename}</a></td>
+                    <td>{file.description}</td>
+                    <td>{file.uploadername}</td>
+                    <td>{file.date}</td>
+                    <td onClick={()=>removefile(file.id, file.filsestorageID)}>X</td>
+                </tr>)
                 })}
        </tbody>
        </table>
