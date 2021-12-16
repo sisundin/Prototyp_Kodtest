@@ -101,7 +101,6 @@ function UploadBox(){
             {!files.length? null : uloader()}
             </div>
             </div>);
-
 }
 
 export default UploadBox

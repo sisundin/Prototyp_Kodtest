@@ -6,39 +6,26 @@ import xml from "../assets/xml.png";
 
 function FilesShower(){
     const [files, setFiles] = React.useState([]);
-    const [serverIsLive , setServerStatus] = React.useState(false);
     const [update, setupdate] = React.useState(0);
     
 
     React.useEffect(() => {
-        
-        if (serverIsLive) {
             getdata();
-        }
-        else{
-            checkServerStatus();
-        }
-        
-    }, [serverIsLive, update]);
+    }, [update]);
 
     //Styles
     const sitemake ={
-        
         "width": "700px",
         "textAlign":"left"
     }
 
 
     //API connection
-    const checkServerStatus =  () => {
-        fetch("/status").then((res) => res.json())
-        .then((data) => setServerStatus(data.isLive?true: false));
-    }
-
     const getdata = () => {
         fetch("/getObjects").then((res) => res.json())
         .then((data) => { setFiles(data.data);});
     }
+
 
     const removefile = (id, fileid) => {
         fetch("/removeFile?id="+id +"&filsestorageID="+fileid).then((res) => res.json())
@@ -52,6 +39,7 @@ function FilesShower(){
         return image?<img alt="Preview broken" height={"50px"} src={image} ></img>:<p>{type}</p>
     }
 
+
     const sortFilesname = (direction="down") => {
         if (direction === "up"){
             setFiles(files.sort((a, b) => (a.filename > b.filename) - (a.filename < b.filename) ));
@@ -60,6 +48,7 @@ function FilesShower(){
         }
     }
 
+    // The component that renders the files avalable on the database
     const showFiles = () => {
        return <><table className="table">
        <thead>
@@ -87,17 +76,19 @@ function FilesShower(){
        </>
     }
 
-    const noFilesFound = () => {
-        return <><p>No files found</p>
-                <button onClick={() => setupdate(update+1)}>Refresh</button></>
-    }
 
+    const noFilesFound = () => {
+        return <>
+                <p>No files found</p>
+                <button onClick={() => setupdate(update+1)}>Refresh</button>
+            </>
+    }
     
 
     return (<center>
-        <div style={sitemake}>
-            {!serverIsLive?"Server is offline" :!files.length?noFilesFound():showFiles()}
-        </div>
+            <div style={sitemake}>
+                {!files.length?noFilesFound():showFiles()}
+            </div>
         </center>)
 
 

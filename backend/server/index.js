@@ -18,8 +18,8 @@ app.use(fileUpload({
 
 const serviceAccount = require('./clear-aurora-333717-a298bedcdfed.json');
 const { initializeApp,  cert } = require('firebase-admin/app');
-const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
-const { getStorage, ref } = require('firebase-admin/storage');
+const { getFirestore} = require('firebase-admin/firestore');
+const { getStorage} = require('firebase-admin/storage');
 
 
 initializeApp({
@@ -85,6 +85,8 @@ app.get("/getObjects", async (req, res) => {
 
 app.post('/uploadFiles', async (req, res) => {
   try {
+    
+    // Worth cheking that there accually is a file linked. 
     if(!req.files) {
       console.log(req.files);
         res.send({
@@ -92,9 +94,8 @@ app.post('/uploadFiles', async (req, res) => {
             message: 'No file uploaded'
         });
     } else {
-      const database = await db.collection("dataSaved");
 
-     
+      const database = await db.collection("dataSaved");
 
         let file = req.files.files;
         let metaData = req.body;
@@ -104,11 +105,14 @@ app.post('/uploadFiles', async (req, res) => {
           public: true,
         };
 
+        // Uploading the file to a storage bucket
         const storagefile = await getStorage().bucket("gs://clear-aurora-333717.appspot.com/").upload(file.tempFilePath, metadata);
         
+        // Getting some metadata from the storage bucket 
         const link = storagefile[0].metadata.mediaLink;
         const filsestorageID = storagefile[0].metadata.name;
 
+        // Just ceating a uploaddate
         const currentdate = new Date(); 
         const datetime = "" + currentdate.getDate() + "/"
                 + (currentdate.getMonth()+1)  + "/" 
@@ -117,7 +121,7 @@ app.post('/uploadFiles', async (req, res) => {
                 + currentdate.getMinutes() + ":" 
                 + currentdate.getSeconds();
        
-
+        // Extracting relevant infomration to create a storage datapack for a database
         const datapack = {
           date: datetime,
           filename: file.name,
@@ -130,8 +134,6 @@ app.post('/uploadFiles', async (req, res) => {
           
         };
 
-        
-        
         const result = await database.add(datapack);
 
         await console.log('Added document with ID: ', result.id);

@@ -1,8 +1,7 @@
 
-import './App.css';
-import UploadBox from "./components/dropcomponent.js";
 import React from "react";
-import FilesShower from './components/fileShower';
+import UploadBox from "./components/uploadComponent";
+import FilesShower from './components/displayComponent';
 
 function App() {
   const text = {
