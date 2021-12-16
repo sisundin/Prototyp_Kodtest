@@ -51,7 +51,7 @@ app.get("/removeFile", async (req, res) => {
   await getStorage().bucket("gs://clear-aurora-333717.appspot.com/").file(filsestorageID).delete();
   const result = await db.collection('dataSaved').doc(id).delete();
   
-  res.send({
+  res.status(200).send({
     data:result
   });
   }catch (err) {
@@ -73,7 +73,7 @@ app.get("/getObjects", async (req, res) => {
     response = [...response, {id:doc.id, ...doc.data()}]
   });
 
-    res.send({
+    res.status(200).send({
       data:response
     });
   }catch (err) {
@@ -95,7 +95,7 @@ app.post('/uploadFiles', async (req, res) => {
         });
     } else {
 
-      const database = await db.collection("dataSaved");
+        
 
         let file = req.files.files;
         let metaData = req.body;
@@ -130,18 +130,19 @@ app.post('/uploadFiles', async (req, res) => {
           type: file.mimetype,
           filepath: file.tempFilePath,
           link: link,
-          filsestorageID: filsestorageID
-          
+          filsestorageID: filsestorageID          
         };
 
+        // Save the file information
+        const database = await db.collection("dataSaved");
         const result = await database.add(datapack);
 
-        await console.log('Added document with ID: ', result.id);
+        //console.log('Added document with ID: ', result.id);
 
-       
         //send response
-        res.send({status: true, message: 'File is uploaded'});
-    }
+        res.status(200).send({ message: 'added document with ID: '+ result.id});
+
+      }
 } catch (err) {
     console.log(err);
     res.status(500).send(err);
