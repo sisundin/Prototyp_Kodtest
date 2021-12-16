@@ -9,7 +9,7 @@ function UploadBox(){
 
     const { getRootProps, getInputProps } = useDropzone({
         maxFiles:1,
-        accept: 'image/jpeg, .pdf, .xml',
+        accept: '.jpg, .pdf, .xml',
         onDrop: (acceptedFiles) => {
             setFiles(
             acceptedFiles.map((file) =>
@@ -72,7 +72,7 @@ function UploadBox(){
 
     
 
-    //Render Components
+    //Visual Components
     const Previews = () => files.map((file) => <div key={file.name}>
               <div>
                 <p style={text}>Filename: {file.name}</p>
@@ -99,7 +99,7 @@ function UploadBox(){
                 <div style = {dropSpace}>
                     <div  {...getRootProps()}>
                         <input {...getInputProps()} />
-                        {!files.length? <span style={text}>Drag and drop file to upload...</span> : Previews() }
+                        {!files.length? <span style={text}>Drag and drop file here to upload...</span> : Previews() }
                     </div>
                     {!files.length? null : uploader()}
                 </div>
