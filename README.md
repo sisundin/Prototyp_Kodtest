@@ -1,7 +1,7 @@
 # Prototyp_Kodtest
  My submission code
 
-I used React to create my frontend solution and node.js to create the backend. I stardet out with a npm create-react-app for the frontend. 
+I used React to create my frontend and node.js to create the backend. I stardet out with a npm create-react-app for the frontend. 
 
 **To get this app started you need 2 terminals. One for server and one for the frontend **
 
@@ -26,15 +26,19 @@ As a disclaimer to my solution, I want to raise the fact that I have never uploa
 I, therefore, tried to make the solution as flexible as possible to leave the possibility to try another service. 
 That's why I made the server. Then I could control the output from the API calls. 
 
+For storage, I used two "firebase-admin" services. Cloud Firestore and Storage. Cloud Firestore does not support file uploads and to keep the size for the UI infomration down. I used Storage for keeping the files. 
+The reason behind the choice to use firebase-admin where the flexibility in API responses makes it easier to reference to other storage methods. 
 
-**Serverside:**
+
+**Server side:**
 
 I have not worked with file transfers before, therefore, wanted to create a server to handle the management of database contacts. 
 I also wanted to create two databases. One optimized for larger files and one for creating the interface. 
 Since I might be loading a lot of content I did not want to download the big files while in the UI.
 This would take a long time and I would probably not use the files downloaded. 
 
-**Frontendside**
+
+**Frontend side**
 
 The front end is really basic. 3 server functions handle all of the operations. 
 
