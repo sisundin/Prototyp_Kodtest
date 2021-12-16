@@ -1,9 +1,9 @@
 # Prototyp_Kodtest
- My submission code
+ **My submission code**
 
 I used React to create my frontend and node.js to create the backend. I stardet out with a npm create-react-app for the frontend. 
 
-**To get this app started you need 2 terminals. One for server and one for the frontend **
+**To get this app started you need 2 terminals. One for server and one for the frontend**
 
 **Step 1:** change directory ./server in one terminal and ./file-manager in the other
 
