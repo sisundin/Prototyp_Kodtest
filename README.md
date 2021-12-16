@@ -40,9 +40,9 @@ This would take a long time and I would probably not use the files downloaded.
 
 **Frontend side**
 
-The front end is really basic. 3 server functions handle all of the operations. 
+The frontend is really basic. 3 server functions handle all of the operations. 
 
-In the component "uploadComponent.js", I simply upload the file to the server. 
+In the component "uploadComponent.js", I simply upload the file to the server after the user has added some metadata. 
 I used a library called "react-dropzone" to manage the selections in the files which also made it possible to drag and drop a file to upload. 
 Having a button to activate the action feels antiquated and clunky. 
 
