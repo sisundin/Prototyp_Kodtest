@@ -23,7 +23,7 @@ const divider = {
   return (
     <div className="App">
       <div style = {divider}></div>
-      <h1 style={text}>File  <span style={headerHighligt}>Uploader</span> </h1>
+      <h1 style={text}>File <span style={headerHighligt}>Uploader</span> </h1>
       <FilesShower/>
       <UploadBox/>
     </div>

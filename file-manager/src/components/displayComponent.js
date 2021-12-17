@@ -45,8 +45,7 @@ function FilesShower(){
 
     const sortFilesname = () => {
         const direction = filnameSortDirection;
-        debugger;
-        console.log(files);
+       
         if (direction === "up"){
             setFiles([...files.sort((a, b) => {return b.filename.localeCompare(a.filename) })]);
             changeFilnameSortDirection("down")
@@ -58,14 +57,13 @@ function FilesShower(){
 
     const sortCreationdate = () => {
         const direction = dateSortDirection;
-        debugger;
-        console.log(files);
+      
         if (direction === "up"){
             setFiles([...files.sort((a, b) => {return b.date.localeCompare(a.date) })]);
-            changeDateSortDirection("down")
+            changeDateSortDirection("down");
         }else if (direction === "down"){
             setFiles([...files.sort((a, b) => {return a.date.localeCompare(b.date)})]);
-            changeDateSortDirection("up")
+            changeDateSortDirection("up");
         }
     }
 
