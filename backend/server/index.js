@@ -63,10 +63,10 @@ app.get("/getObjects", async (req, res) => {
   
   try{
   const database =  await db.collection('dataSaved');
-  const stapshot = await database.get();
+  const snapshot = await database.get();
   let response = [];
 
-  stapshot.forEach(doc => {
+  snapshot.forEach(doc => {
     response = [...response, {id:doc.id, ...doc.data()}]
   });
 
