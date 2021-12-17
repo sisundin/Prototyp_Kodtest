@@ -73,13 +73,13 @@ function FilesShower(){
     const showFiles = () => {
        return <><table className="table">
        <thead>
-        <tr>
-            <th scope="col">Type</th>
-            <th scope="col" onClick={() => {  sortFilesname();}}>Filename {filnameSortDirection==="up"?"↑":"↓"}</th>
-            <th scope="col">Description</th>
-            <th scope="col">Uploaded by</th>
-            <th scope="col" onClick={() => {  sortCreationdate();}}>Date {dateSortDirection==="up"?"↑":"↓"}</th>
-        </tr>
+            <tr>
+                <th scope="col">Type</th>
+                <th scope="col" onClick={() => {  sortFilesname();}}>Filename {filnameSortDirection==="up"?"↑":"↓"}</th>
+                <th scope="col">Description</th>
+                <th scope="col">Uploaded by</th>
+                <th scope="col" onClick={() => {  sortCreationdate();}}>Date {dateSortDirection==="up"?"↑":"↓"}</th>
+            </tr>
         </thead>
         <tbody>{files.map(file => {
                 return (<tr key={file.id}>
