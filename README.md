@@ -26,7 +26,7 @@ As a disclaimer to my solution, I want to raise the fact that I have never uploa
 I, therefore, tried to make the solution as flexible as possible to leave the possibility to try another service. 
 That's why I made the server. Then I could control the output from the API calls. 
 
-For storage, I used two "firebase-admin" services. Cloud Firestore and Storage. Cloud Firestore does not support file uploads and to keep the size for the UI infomration down. I used Storage for keeping the files. 
+For storage, I used two "firebase-admin" services. Cloud Firestore and Storage. Cloud Firestore does not support file uploads and to keep the size for the UI information down. I used Storage for storing the files. 
 The reason behind the choice to use firebase-admin where the flexibility in API responses makes it easier to reference to other storage methods. 
 
 
