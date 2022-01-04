@@ -3,6 +3,8 @@ import UploadBox from "./components/uploadComponent";
 import FilesShower from "./components/displayComponent";
 
 function App() {
+  const [update, setUpdate] = React.useState(0);
+
   const text = {
     color: "black",
     textAlign: "center",
@@ -19,14 +21,18 @@ function App() {
     margin: "50px",
   };
 
+  function updateAll() {
+    setUpdate(update + 1);
+  }
+
   return (
     <div className="App">
       <div style={divider}></div>
       <h1 style={text}>
         File <span style={headerHighligt}>Uploader</span>{" "}
       </h1>
-      <FilesShower />
-      <UploadBox />
+      <FilesShower didUpdate={update} />
+      <UploadBox update={updateAll} />
     </div>
   );
 }

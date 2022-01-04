@@ -1,7 +1,7 @@
 import React from "react";
 import { useDropzone } from "react-dropzone";
 
-function UploadBox() {
+function UploadBox(props) {
   const [files, setFiles] = React.useState([]);
   const [metaData, setMetadata] = React.useState({});
   const [uploading, setUploading] = React.useState(false);
@@ -64,6 +64,7 @@ function UploadBox() {
         setFiles([]);
         setMetadata({});
         setUploading(false);
+        props.update();
       })
       .catch((e) => console.log(e));
   };

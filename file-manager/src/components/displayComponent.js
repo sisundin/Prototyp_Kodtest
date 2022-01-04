@@ -3,7 +3,8 @@ import jpg from "../assets/jpg.png";
 import pdf from "../assets/pdf.png";
 import xml from "../assets/xml.png";
 
-function FilesShower() {
+function FilesShower(props) {
+  const [parentUpdate, setParetnUpdate] = React.useState(0);
   const [files, setFiles] = React.useState([]);
   const [update, setupdate] = React.useState(0);
   const [filnameSortDirection, changeFilnameSortDirection] = React.useState(
@@ -11,9 +12,13 @@ function FilesShower() {
   );
   const [dateSortDirection, changeDateSortDirection] = React.useState("up");
 
+  if (props.didUpdate !== parentUpdate) {
+    setParetnUpdate(props.didUpdate);
+  }
+
   React.useEffect(() => {
     getdata();
-  }, [update]);
+  }, [update, parentUpdate]);
 
   //Styles
   const sitemake = {
