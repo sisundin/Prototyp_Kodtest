@@ -1,22 +1,22 @@
-import React from "react";
+import {useEffect, useState} from "react";
 import jpg from "../assets/jpg.png";
 import pdf from "../assets/pdf.png";
 import xml from "../assets/xml.png";
 
 function FilesShower(props) {
-  const [parentUpdate, setParetnUpdate] = React.useState(0);
-  const [files, setFiles] = React.useState([]);
-  const [update, setupdate] = React.useState(0);
-  const [filnameSortDirection, changeFilnameSortDirection] = React.useState(
+  const [parentUpdate, setParetnUpdate] = useState(0);
+  const [files, setFiles] = useState([]);
+  const [update, setupdate] = useState(0);
+  const [filnameSortDirection, changeFilnameSortDirection] = useState(
     "up"
   );
-  const [dateSortDirection, changeDateSortDirection] = React.useState("up");
+  const [dateSortDirection, changeDateSortDirection] = useState("up");
 
   if (props.didUpdate !== parentUpdate) {
     setParetnUpdate(props.didUpdate);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     getdata();
   }, [update, parentUpdate]);
 

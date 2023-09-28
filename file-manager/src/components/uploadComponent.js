@@ -1,10 +1,10 @@
-import React from "react";
+import {useState} from "react";
 import { useDropzone } from "react-dropzone";
 
 function UploadBox(props) {
-  const [files, setFiles] = React.useState([]);
-  const [metaData, setMetadata] = React.useState({});
-  const [uploading, setUploading] = React.useState(false);
+  const [files, setFiles] = useState([]);
+  const [metaData, setMetadata] = useState({});
+  const [uploading, setUploading] = useState(false);
 
   const { getRootProps, getInputProps } = useDropzone({
     maxFiles: 1,

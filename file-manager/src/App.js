@@ -1,9 +1,9 @@
-import React from "react";
+import {useState} from "react";
 import UploadBox from "./components/uploadComponent";
 import FilesShower from "./components/displayComponent";
 
 function App() {
-  const [update, setUpdate] = React.useState(0);
+  const [update, setUpdate] = useState(0);
 
   const text = {
     color: "black",
